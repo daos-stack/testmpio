@@ -1,8 +1,10 @@
 %global testmpio_home %{_libdir}/testmpio
+%global cart_major 4
+%global daos_major 0
 
 Name:		testmpio
 Version:	1.2
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	LLNL test suite
 
 License:	Unknown
@@ -12,6 +14,7 @@ Patch0:		daos.patch
 
 BuildRequires:	mpich-devel
 Requires:	mpich
+Provides:   %{name}-cart-%{cart_major}-daos-%{daos_major}
 
 %description
 LLNL test suite
@@ -34,5 +37,8 @@ install -m 755 testmpio_daos %{buildroot}/%{testmpio_home}/
 %license
 
 %changelog
+* Sun Dec 29 2019 Brian J. Murrell <brian.murrell@intel.com> - 1.2-2
+- Add Provides: %{name}-cart-%{cart_major}-daos-%{daos_major}
+
 * Wed Sep 04 2019 Brian J. Murrell <brian.murrell@intel.com> - 1.2-1
 - Initial package
