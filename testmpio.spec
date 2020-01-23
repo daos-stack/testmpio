@@ -13,6 +13,7 @@ Source0:	http://ftp.mcs.anl.gov/pub/mpi/mpi-test/%{name}-%{version}.tar.gz
 Patch0:		daos.patch
 
 BuildRequires:	mpich-devel
+BuildRequires:	ed
 Requires:	mpich
 Provides:   %{name}-cart-%{cart_major}-daos-%{daos_major}
 
@@ -21,7 +22,18 @@ LLNL test suite
 
 %prep
 %autosetup -n Testmpio
-sed -i -e 's/\(MPIHOME *= *\)\/.*/\1\/usr\/lib64\/mpich/' Makefile
+cat Makefile
+%if (0%{?suse_version} >= 1500)
+MPIHOME=/usr/lib64/mpi/gcc/mpich/
+%else
+MPIHOME=/usr/lib64/mpich/
+%endif
+ed Makefile <<EOF
+/MPIHOME = /c
+MPIHOME = ${MPIHOME//\//\\/}
+.
+wq
+EOF
 
 %build
 make %{?_smp_mflags}
