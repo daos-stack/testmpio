@@ -30,6 +30,7 @@ cat Makefile
 MPIHOME=/usr/lib64/mpi/gcc/mpich/
 %else
 module load mpi/mpich-x86_64
+MPIHOME=$MPI_HOME
 %endif
 ed Makefile <<EOF
 /MPIHOME = /c
