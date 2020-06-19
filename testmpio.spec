@@ -14,8 +14,6 @@ Patch0:		daos.patch
 
 BuildRequires:	mpich-devel
 BuildRequires:	ed
-%if (0%{?suse_version} >= 1500)
-%endif
 Requires:	mpich
 Provides:   %{name}-cart-%{cart_major}-daos-%{daos_major}
 
