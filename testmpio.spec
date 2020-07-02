@@ -4,7 +4,7 @@
 
 Name:		testmpio
 Version:	1.2
-Release:	2%{?dist}
+Release:	3%{?dist}
 Summary:	LLNL test suite
 
 License:	Unknown
@@ -24,9 +24,11 @@ LLNL test suite
 %autosetup -n Testmpio
 cat Makefile
 %if (0%{?suse_version} >= 1500)
+# hack because module load on Leap doesn't set MPIHOME
 MPIHOME=/usr/lib64/mpi/gcc/mpich/
 %else
-MPIHOME=/usr/lib64/mpich/
+module load mpi/mpich-x86_64
+MPIHOME=$MPI_HOME
 %endif
 ed Makefile <<EOF
 /MPIHOME = /c
@@ -49,6 +51,9 @@ install -m 755 testmpio_daos %{buildroot}/%{testmpio_home}/
 %license
 
 %changelog
+* Thu Jun 18 2020 Brian J. Murrell <brian.murrell@intel.com> - 1.2-3
+- Use the MPIHOME that module load returns except on Leap 15
+
 * Sun Dec 29 2019 Brian J. Murrell <brian.murrell@intel.com> - 1.2-2
 - Add Provides: %{name}-cart-%{cart_major}-daos-%{daos_major}
 
