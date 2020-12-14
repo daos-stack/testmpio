@@ -1,10 +1,9 @@
 %global testmpio_home %{_libdir}/testmpio
-%global cart_major 4
-%global daos_major 0
+%global daos_major 1
 
 Name:		testmpio
 Version:	1.2
-Release:	3%{?dist}
+Release:	4%{?dist}
 Summary:	LLNL test suite
 
 License:	Unknown
@@ -15,7 +14,7 @@ Patch0:		daos.patch
 BuildRequires:	mpich-devel
 BuildRequires:	ed
 Requires:	mpich
-Provides:   %{name}-cart-%{cart_major}-daos-%{daos_major}
+Provides:   %{name}-daos-%{daos_major}
 
 %description
 LLNL test suite
@@ -51,6 +50,9 @@ install -m 755 testmpio_daos %{buildroot}/%{testmpio_home}/
 %license
 
 %changelog
+* Mon Dec 14 2020 Kenneth Cain <kenneth.c.cain@intel.com> - 1.2-4
+- Update packaging for mpich built with libdaos.so.1
+
 * Thu Jun 18 2020 Brian J. Murrell <brian.murrell@intel.com> - 1.2-3
 - Use the MPIHOME that module load returns except on Leap 15
 
