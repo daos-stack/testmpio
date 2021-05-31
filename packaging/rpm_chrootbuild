@@ -46,4 +46,4 @@ else
     echo "Unable to update /etc/mock/$CHROOT_NAME.cfg."
     echo "You need to make sure it has the needed repos in it yourself."
 fi
-eval mock -r "$CHROOT_NAME" --config-opts=package_manager=dnf $MOCK_OPTIONS $RPM_BUILD_OPTIONS "$TARGET"
+eval mock -r "$CHROOT_NAME" $MOCK_OPTIONS $RPM_BUILD_OPTIONS "$TARGET"
