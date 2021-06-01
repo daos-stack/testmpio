@@ -1,10 +1,8 @@
-%global testmpio_home %{_libdir}/testmpio
-%global cart_major 4
-%global daos_major 0
+%global testmpio_home %{_libdir}/mpich/testmpio
 
 Name:		testmpio
 Version:	1.2
-Release:	3%{?dist}
+Release:	4%{?dist}
 Summary:	LLNL test suite
 
 License:	Unknown
@@ -14,8 +12,6 @@ Patch0:		daos.patch
 
 BuildRequires:	mpich-devel
 BuildRequires:	ed
-Requires:	mpich
-Provides:   %{name}-cart-%{cart_major}-daos-%{daos_major}
 
 %description
 LLNL test suite
@@ -41,16 +37,26 @@ EOF
 make %{?_smp_mflags}
 
 %install
-mkdir -p %{buildroot}/%{testmpio_home}/
+mkdir -p %{buildroot}/%{testmpio_home}/ %{buildroot}%{_libdir}/testmpio/
+# create compatibility link
+ln -s ../mpich/testmpio/ %{buildroot}/%{_libdir}/testmpio
+
 install -m 755 testmpio %{buildroot}/%{testmpio_home}/
 install -m 755 testmpio_daos %{buildroot}/%{testmpio_home}/
 
 %files
 %{testmpio_home}
+%{_libdir}/testmpio
 %doc
 %license
 
 %changelog
+* Mon May 31 2021 Brian J. Murrell <brian.murrell@intel.com> - 1.2-4
+- Build on EL8
+- Remove the virtual provides
+- Install under mpich prefix
+- Create compatibility link
+
 * Thu Jun 18 2020 Brian J. Murrell <brian.murrell@intel.com> - 1.2-3
 - Use the MPIHOME that module load returns except on Leap 15
 
