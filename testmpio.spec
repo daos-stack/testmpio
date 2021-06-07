@@ -37,9 +37,9 @@ EOF
 make %{?_smp_mflags}
 
 %install
-mkdir -p %{buildroot}/%{testmpio_home}/ %{buildroot}%{_libdir}/testmpio/
+mkdir -p %{buildroot}/%{testmpio_home}/ %{buildroot}%{_libdir}/
 # create compatibility link
-ln -s ../mpich/testmpio/ %{buildroot}/%{_libdir}/testmpio
+ln -s ../mpich/testmpio %{buildroot}/%{_libdir}/
 
 install -m 755 testmpio %{buildroot}/%{testmpio_home}/
 install -m 755 testmpio_daos %{buildroot}/%{testmpio_home}/

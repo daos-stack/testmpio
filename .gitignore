@@ -1,4 +1,4 @@
-_topdir/
+_topdir*/
 *.tar.*
 *.code-workspace
 *.sw?
