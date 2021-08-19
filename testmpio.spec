@@ -6,7 +6,7 @@
 
 Name:		testmpio
 Version:	1.2
-Release:	4%{?dist}
+Release:	5%{?dist}
 Summary:	LLNL test suite
 
 License:	Unknown
@@ -16,6 +16,9 @@ Patch0:		daos.patch
 
 BuildRequires:	mpich-devel
 BuildRequires:	ed
+%if (0%{?suse_version} >= 1500)
+BuildRequires: libfabric-devel
+%endif
 
 %description
 LLNL test suite
@@ -59,6 +62,9 @@ install -m 755 testmpio_daos %{buildroot}/%{testmpio_home}/
 %license
 
 %changelog
+* Fri Aug 27 2021 John E. Malmberg <john.e.malmberg@intel.com> - 1.2-5
+- Leap 15 builds depend on libfabric-devel
+
 * Tue Jun 08 2021 Brian J. Murrell <brian.murrell@intel.com> - 1.2-4
 - Build on EL8
 - Remove the virtual provides
