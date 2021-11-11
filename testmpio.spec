@@ -6,7 +6,7 @@
 
 Name:		testmpio
 Version:	1.2
-Release:	4%{?dist}
+Release:	5%{?dist}
 Summary:	LLNL test suite
 
 License:	Unknown
@@ -59,6 +59,9 @@ install -m 755 testmpio_daos %{buildroot}/%{testmpio_home}/
 %license
 
 %changelog
+* Thu Nov 11 2021 Wang Shilong <shilong.wang@intel.com> - 1.2-5
+- Rebuilt for breaking DAOS API change
+
 * Tue Jun 08 2021 Brian J. Murrell <brian.murrell@intel.com> - 1.2-4
 - Build on EL8
 - Remove the virtual provides
