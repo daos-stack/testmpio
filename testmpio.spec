@@ -6,7 +6,7 @@
 
 Name:		testmpio
 Version:	1.2
-Release:	4%{?dist}
+Release:	5%{?dist}
 Summary:	LLNL test suite
 
 License:	Unknown
@@ -59,6 +59,9 @@ install -m 755 testmpio_daos %{buildroot}/%{testmpio_home}/
 %license
 
 %changelog
+* Tue Jul 04 2023 Brian J. Murrell <brian.murrell@intel.com> - 1.2-5
+- Rebuild for EL9
+
 * Tue Jun 08 2021 Brian J. Murrell <brian.murrell@intel.com> - 1.2-4
 - Build on EL8
 - Remove the virtual provides
@@ -69,7 +72,7 @@ install -m 755 testmpio_daos %{buildroot}/%{testmpio_home}/
 - Use the MPIHOME that module load returns except on Leap 15
 
 * Sun Dec 29 2019 Brian J. Murrell <brian.murrell@intel.com> - 1.2-2
-- Add Provides: %{name}-cart-%{cart_major}-daos-%{daos_major}
+- Add Provides: %%{name}-cart-%%{cart_major}-daos-%%{daos_major}
 
 * Wed Sep 04 2019 Brian J. Murrell <brian.murrell@intel.com> - 1.2-1
 - Initial package
