@@ -11,7 +11,7 @@ Summary:	LLNL test suite
 
 License:	Unknown
 URL:		http://ftp.mcs.anl.gov/
-Source0:	http://ftp.mcs.anl.gov/pub/mpi/mpi-test/%{name}-%{version}.tar.gz
+Source0:	https://ftp.mcs.anl.gov/pub/mpi/mpi-test/%{name}-%{version}.tar.gz
 Patch0:		daos.patch
 
 BuildRequires:	mpich-devel
